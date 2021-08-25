@@ -1,1 +1,3 @@
-rust barcode generator
+# barcode
+
+Rust barcode generator
