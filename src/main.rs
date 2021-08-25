@@ -10,27 +10,19 @@ const HEIGHT: i32 = MODULES * 2;
 const NUMBER_L: &str = "012345";
 const NUMBER_R: &str = "678905";
 
-const BEGIN: i32 = 0b1101; // 3 bits
-const QUIET: i32 = 0b1000000000;
-const L: [i32; 10] = [
-    0b10001101, 0b10011001, 0b10010011, 0b10111101, 0b10100011, 0b10110001, 0b10101111, 0b10111011,
-    0b10110111, 0b10001011,
-];
-const MID: i32 = 0b101010; //5 bits
-const R: [i32; 10] = [
-    // 7 bits per module
-    0b11110010, 0b11100110, 0b11101100, 0b11000010, 0b11011100, 0b11001110, 0b11010000, 0b11000100,
-    0b11001000, 0b11110100,
-];
-
-const END: i32 = 0b1101; // 3 bits
+const QUIET: i32 = 0x200;
+const BEGIN: i32 = 0xd;
+const MID: i32 = 0x2a;
+const END: i32 = 0xd;
+const L: [i32; 10] = [0x8d, 0x99, 0x93, 0xbd, 0xa3, 0xb1, 0xaf, 0xbb, 0xb7, 0x8b];
+const R: [i32; 10] = [0xf2, 0xe6, 0xec, 0xc2, 0xdc, 0xce, 0xd0, 0xc4, 0xc8, 0xf4];
 
 fn draw_bar(ctx: &Context, position: i32) {
     let previous_source = ctx.source();
     const BAR_WIDTH: f64 = WIDTH as f64 / MODULES as f64;
     ctx.set_source_rgb(0.0, 0.0, 0.0);
     ctx.rectangle(position as f64 * BAR_WIDTH, 0.0, BAR_WIDTH, HEIGHT as f64);
-    ctx.fill().expect("error filling rect");
+    ctx.fill().expect("error filling rectangle");
     ctx.set_source(&previous_source)
         .expect("error setting source");
 }
